@@ -1,6 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faEllipsis,
+  faCircleExclamation,
+  faVolumeHigh,
+  faVolumeLow,
+  faVolumeOff,
+} from "@fortawesome/free-solid-svg-icons";
 
 const KanbanBoard = ({ columns, cards, setCards }) => {
   const handleDragStart = (e, cardId) => {
@@ -24,6 +31,23 @@ const KanbanBoard = ({ columns, cards, setCards }) => {
       return card;
     });
     setCards(newCards);
+  };
+
+  const handleIcon = (priority) => {
+    switch (priority) {
+      case 0:
+        return faEllipsis;
+      case 1:
+        return faVolumeOff;
+      case 2:
+        return faVolumeLow;
+      case 3:
+        return faVolumeHigh;
+      case 4:
+        return faCircleExclamation;
+      default:
+        return faEllipsis;
+    }
   };
 
   return (
@@ -52,11 +76,18 @@ const KanbanBoard = ({ columns, cards, setCards }) => {
                 onDrop={(e) => handleDrop(e, column.id)}
                 key={card.id}
               >
-                <p>{card.id}</p>
-                <h4>{card.title}</h4>
-                {card.tag?.map((item) => (
-                  <span>{item}</span>
-                ))}
+                <div>
+                  <p>{card.id}</p>
+                  <h4>{card.title}</h4>
+                  <FontAwesomeIcon
+                    icon={handleIcon(card.priority)}
+                    className="cardTag"
+                  />
+                  {card.tag?.map((item) => (
+                    <span>{item}</span>
+                  ))}
+                </div>
+                <FontAwesomeIcon icon={card.icon} />
               </div>
             ))}
         </div>

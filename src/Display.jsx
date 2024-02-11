@@ -31,6 +31,7 @@ const Display = ({ handleGroup, handleSort }) => {
               onChange={(e) => {
                 handleGroup(e.target.value);
                 setGroup(e.target.value);
+                setOpen(false);
               }}
             >
               {GROUPS.map((item) => (
@@ -47,6 +48,7 @@ const Display = ({ handleGroup, handleSort }) => {
               onChange={(e) => {
                 handleSort(e.target.value);
                 setOrder(e.target.value);
+                setOpen(false);
               }}
             >
               {SORT.map((item) => (

@@ -4,7 +4,7 @@
   overflow-x: scroll;
 }
 
-.display{
+.display {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -32,9 +32,11 @@
 .filter {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   margin-top: 10px;
-  select{
+  select {
     width: 100px;
+    border: 1px solid #ccc;
   }
 }
 
@@ -48,18 +50,6 @@
   margin-right: 20px;
 }
 
-.card {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.card:hover {
-  cursor: pointer;
-  background-color: #eee;
-}
-
 .columnBox {
   display: flex;
   justify-content: space-between;
@@ -70,11 +60,30 @@
 .title {
   display: flex;
   align-items: baseline;
-  gap: 10px
+  gap: 10px;
 }
 
-.icon{
+.icon {
   display: flex;
   gap: 10px;
   width: 40px;
+}
+
+.card {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.cardTag {
+  margin-right: 10px;
 }

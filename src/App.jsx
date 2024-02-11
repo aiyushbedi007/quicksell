@@ -1,41 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Display from "./Display";
 import KanbanBoard from "./KanbanBoard";
-import {
-  faBoxArchive,
-  faCircleCheck,
-  faCircleHalfStroke,
-  faCircleXmark,
-  faEllipsis,
-  faCircleExclamation,
-  faVolumeHigh,
-  faVolumeLow,
-  faVolumeOff,
-} from "@fortawesome/free-solid-svg-icons";
-import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import { URL, STATUS, PRIORITY, ICONS } from "./constants";
 import "./App.css";
-
-const URL = "https://api.quicksell.co/v1/internal/frontend-assignment";
-
-const STATUS = [
-  { id: "Backlog", title: "Backlog", count: 0, icon: faBoxArchive },
-  { id: "Todo", title: "Todo", count: 0, icon: faCircle },
-  {
-    id: "In progress",
-    title: "In Progress",
-    count: 0,
-    icon: faCircleHalfStroke,
-  },
-  { id: "Done", title: "Done", count: 0, icon: faCircleCheck },
-  { id: "Cancelled", title: "Cancelled", count: 0, icon: faCircleXmark },
-];
-const PRIORITY = [
-  { id: 0, title: "No priority", count: 0, icon: faEllipsis },
-  { id: 4, title: "Urgent", count: 0, icon: faCircleExclamation },
-  { id: 3, title: "High", count: 0, icon: faVolumeHigh },
-  { id: 2, title: "Medium", count: 0, icon: faVolumeLow },
-  { id: 1, title: "Low", count: 0, icon: faVolumeOff },
-];
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -56,6 +23,7 @@ const App = () => {
       setCards(
         tickets.map((item) => ({
           ...item,
+          icon: ICONS[Math.floor(Math.random() * ICONS.length)],
           columnId: item.status,
         }))
       );
@@ -71,6 +39,7 @@ const App = () => {
       setCards(
         tickets.map((item) => ({
           ...item,
+          icon: ICONS[Math.floor(Math.random() * ICONS.length)],
           columnId: item.priority,
         }))
       );
@@ -81,6 +50,8 @@ const App = () => {
         users.map((user) => ({
           id: user.id,
           title: user.name,
+          icon: ICONS[Math.floor(Math.random() * ICONS.length)],
+          count: tickets.filter((ticket) => ticket.userId === user.id).length,
         }))
       );
       setCards(

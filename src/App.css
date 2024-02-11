@@ -1,16 +1,17 @@
 .App {
-  margin: 20px;
+  margin: 20px 40px;
   width: 100%;
 }
 
 .display {
-  padding: 10px;
+  padding: 5px 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  font-weight: 500;
 }
 
 .display:hover {
@@ -33,9 +34,14 @@
   justify-content: space-between;
   align-items: baseline;
   margin-top: 10px;
+  color: gray;
+  font-weight: 500;
   select {
+    padding: 3px 5px;
     width: 100px;
+    font-weight: 600;
     border: 1px solid #ccc;
+    border-radius: 5px;
   }
 }
 
@@ -46,7 +52,7 @@
 
 .column {
   min-width: 350px;
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 .columnBox {
@@ -58,7 +64,7 @@
 
 .title {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
 }
 
@@ -66,6 +72,11 @@
   display: flex;
   gap: 10px;
   width: 40px;
+}
+
+.columnIcon {
+  width: 20px;
+  height: 20px;
 }
 
 .card {
@@ -85,4 +96,21 @@
 
 .cardTag {
   margin-right: 10px;
+  height: 20px;
+  width: 20px;
+}
+
+.card-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  h4 {
+    margin-top: 0;
+  }
+}
+
+.card-id,
+.card-tag {
+  color: gray;
 }

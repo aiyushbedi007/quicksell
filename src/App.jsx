@@ -68,7 +68,6 @@ const App = () => {
     if (order === "Priority") {
       newCards.sort((a, b) => b.priority - a.priority);
       setCards(newCards);
-      console.log("newCards", newCards);
     }
     if (order === "Title") {
       newCards.sort((a, b) => b.title.localeCompare(a.title));

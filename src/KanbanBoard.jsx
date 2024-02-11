@@ -1,13 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faEllipsis,
-  faCircleExclamation,
-  faVolumeHigh,
-  faVolumeLow,
-  faVolumeOff,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import backIcon from "./circle-dashed-svgrepo-com.svg";
+import checkIcon from "./icons8-checkmark.svg";
+import todoIcon from "./icons8-circle-50.png";
+import low from "./icons8-low-connection-24.png";
+import medium from "./icons8-signal-med.png";
+import high from "./icons8-signal-24.png";
+import urgent from "./icons8-high-priority-30.png";
+import elipsis from "./icons8-ellipsis-30.png";
 
 const KanbanBoard = ({ columns, cards, setCards }) => {
   const handleDragStart = (e, cardId) => {
@@ -33,20 +34,34 @@ const KanbanBoard = ({ columns, cards, setCards }) => {
     setCards(newCards);
   };
 
+  const handleStatusIcon = (status) => {
+    switch (status) {
+      case "Backlog":
+        return backIcon;
+      case "Todo":
+      case "In progress":
+        return todoIcon;
+      case "Done":
+        return checkIcon;
+      default:
+        return backIcon;
+    }
+  };
+
   const handleIcon = (priority) => {
     switch (priority) {
       case 0:
-        return faEllipsis;
+        return elipsis;
       case 1:
-        return faVolumeOff;
+        return low;
       case 2:
-        return faVolumeLow;
+        return medium;
       case 3:
-        return faVolumeHigh;
+        return high;
       case 4:
-        return faCircleExclamation;
+        return urgent;
       default:
-        return faEllipsis;
+        return elipsis;
     }
   };
 
@@ -56,6 +71,9 @@ const KanbanBoard = ({ columns, cards, setCards }) => {
         <div className="column" key={column.id}>
           <div className="columnBox">
             <div className="title">
+              {column.icon2 && (
+                <img src={column.icon2} alt="icon" className="columnIcon" />
+              )}
               <FontAwesomeIcon icon={column.icon} />
               <h4>{column.title}</h4>
               <span>{column.count}</span>
@@ -77,14 +95,22 @@ const KanbanBoard = ({ columns, cards, setCards }) => {
                 key={card.id}
               >
                 <div>
-                  <p>{card.id}</p>
-                  <h4>{card.title}</h4>
-                  <FontAwesomeIcon
-                    icon={handleIcon(card.priority)}
+                  <span className="card-id">{card.id}</span>
+                  <div className="card-title">
+                    <img
+                      src={handleStatusIcon(card.status)}
+                      alt="icon"
+                      className="columnIcon"
+                    />
+                    <h4>{card.title}</h4>
+                  </div>
+                  <img
+                    src={handleIcon(card.priority)}
                     className="cardTag"
+                    alt="icon"
                   />
                   {card.tag?.map((item) => (
-                    <span>{item}</span>
+                    <span className="card-tag">{item}</span>
                   ))}
                 </div>
                 <FontAwesomeIcon icon={card.icon} />
